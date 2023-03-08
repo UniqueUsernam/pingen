@@ -1,0 +1,31 @@
+.\" Manpage for pingen.
+.\" Submit an issue on GitHub to report errors, bugs, or typos ([GITHUB ADDRESS HERE]).
+.TH PINGEN 1 "08 March 2023" "1.0" "pingen"
+.SH NAME
+\fBpingen\fR \- Generate a list of all possible PINs of a certain length for brute-force attacks
+.SH SYNOPSIS
+\fBpingen\fR [-h | --help] [-f | --file \fIfile\fR] \fIdigits\fR
+.SH DESCRIPTION
+\fBpingen\fR is a tool to aid in cracking a PIN (number-only password) if you know the number of digits in the PIN\. \fBpingen\fR generates a list of all possible PINs that have the specified number of digits, which you can save in a file or print to standard output\. Therefore, \fBpingen\fR is not meant to crack PINs on its own; it is meant to facilitate brute-force attacks by quickly generating a list of all possible PINs of a certain length\. For a normal-length PIN (4 or 5 digits), the cracking process takes less than 1 second\.
+
+The only required argument is \fIdigits\fR, the number of digits in the PIN\. If you don't specify \-f, the list of PINs will be printed to standard output, or passed along a pipeline if \fBpingen\fR is part of said pipeline\. This is useful for passing the list of PINs to another program for processing\. Note that PINs that begin with a zero (or multiple zeros) but end in a number other than zero will not be included in \fBpingen\fR's output (see \fBBUGS\fR)\.
+
+pingen outputs one number per line. pingen files will also contain one possible PIN per line.
+.SH OPTIONS
+.
+.TP
+\fB\-\-file\fR, \fB\-f \fIfile\fR\fR
+The file path to save the generated list of PINs to (one PIN per line)\. If this option is omitted, print to standard output (stuout) or pass along a pipeline\.
+.
+.TP
+\fB\-\-help\fR, \fB\-h\fR
+Print a quick help summary for \fBpingen\fR\.
+.
+.SH SEE ALSO
+Only \fBbash(1)\fR builtins are used in \fBpingen\fR\.
+.SH BUGS
+The only known bug is that PINs that begin with one or more zeros but end with a number other than zero are not included in generated lists. This is due to the underlying mathematical computation used by \fBpingen\fR\. To report another bug, error, or typo, please submit an issue on GitHub at [GITHUB ADDRESS HERE]\.
+.SH EXIT STATUS
+\fBpingen\fR returns an exit code of \fB0\fR on a success, and \fB1\fR on an error\.
+.SH DISCLAIMER
+Do not use \fBpingen\fR for any illegal purposes, including, but not limited to, hacking into others' accounts, devices, or networks without permission\. Cracking others' PINs to gain access to their account, device, or network is illegal, and \fBpingen\fR should not be used to break the law\. Penetration testing requires explicit approval from the owner of the system you are testing on, and \fBpingen\fR should only be used for penetration testing with that permission\. The developer of \fBpingen\fR does not assume any responsibility for illegal actions performed with the aid of, or invlolving, \fBpingen\fR\.

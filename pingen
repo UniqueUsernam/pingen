@@ -1,0 +1,68 @@
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "pingen is a tool to aid you in cracking a PIN (number-only password) if you know the number of digits in the PIN. pingen generates a list of all possible PINs that have the specified number of digits, which you can save in a file or print to standard output (useful in a pipeline). Therefore, pingen cannot crack PINs on its own; it is meant to facilitate brute-force attacks by quickly generating a list of all possible PINs of a certain length. For a normal-length PIN (4 or 5 digits), the cracking process takes less than 1 second."
+elif [[ "$1" == "--file" || "$1" == "-f" ]]; then
+	file="$2"
+	digits_str="$3"
+elif [[ $1 == "" ]]; then
+	echo "pingen: you must supply at least a PIN length" 1>&2
+	exit 1
+elif [[ "$2" == "" ]]; then
+	digits_str="$1"
+	#Path to standard output
+	file="/dev/fd/1"
+fi
+if [[ $digits_str -eq 0 ]]; then
+	echo "pingen: number of digits is invalid" 1>&2
+	exit 1
+elif [[ $digits_str == *"-"* ]]; then
+	echo "pingen: negative numbers not allowed" 1>&2
+	exit 1
+fi
+function pingen () {
+	digits_str="$1"
+	declare -i digits=$digits_str
+	highest_str=9
+	declare -i i=0
+	#Stops 1 earlier than $digits because of the original 9, and later on original 1 in the variables $highest_str and $lowest_str
+	digits=${digits}-1
+	while [ $i -lt $digits ]; do
+		highest_str=${highest_str}9
+		i+=1
+	done
+	#Declared as number
+	declare -i highest=$highest_str
+
+	lowest_str=1
+	i=0
+	while [ $i -lt $digits ]; do
+		lowest_str=${lowest_str}0
+		i+=1
+	done
+	#Declared as number
+	declare -i lowest=$lowest_str
+
+	declare -i pin=$lowest_str
+	while true; do
+		#Generate an all-zero PIN first
+		if [ $pin -eq $lowest_str ]; then
+			zeros=0
+			i=0
+			while [ $i -lt $digits ]; do
+				zeros=${zeros}0
+				i+=1
+			done
+			echo $zeros
+		fi
+		if [ $pin -ge $highest ]; then
+			echo $pin
+			break
+		fi
+		echo $pin
+		pin+=1
+	done
+}
+if [[ $file == "/dev/fd/1" ]]; then
+	pingen $digits_str
+else
+	pingen $digits_str > $file
+fi
