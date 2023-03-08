@@ -16,7 +16,7 @@ If you have man installed, a manpage file is included in the repository (pingen.
 
 There are no further dependencies required to use pingen. To view the built-in manual page, you need to have man installed, but this is optional.
 # Bugs
-Currently, the only known bug is that PINs that begin with one or more zeros but end with a number other than zero are not included in generated lists. This is due to the underlying mathematical computation used by pingen. To report another bug, error, or typo, please submit an issue in this repository.
-An issue with the repository (not the actual program) is that the project languages sidebar states that pingen is written entirely with roff, ignoring the pingen executable file.
+Currently, the only known bug is that PINs that begin with one or more zeros but end with a number other than zero are not included in generated lists. This is due to the underlying mathematical computation used by pingen. To report another bug, error, or typo, please submit an issue in this repository.\
+An issue with the repository (not the actual program) is that the project languages sidebar states that pingen is written entirely with Roff, ignoring the pingen executable file. Only the manual page pingen.1 is written in Roff.
 # Disclaimer
 Do not use pingen for any illegal purposes, including, but not limited to, hacking into others' accounts, devices, or networks without permission. Cracking others' PINs to gain access to their account, device, or network is illegal, and pingen may not be used to break the law. Penetration testing requires explicit approval from the owner of the system you are testing on, and pingen should only be used for penetration testing with that permission. The developer of pingen does not assume any responsibility for illegal actions performed with the aid of, or invlolving, pingen.
