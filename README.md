@@ -15,5 +15,7 @@ If you have man installed, a manpage file is included in the repository (pingen.
 + The bash shell, installed at the path /bin/bash (https://www.gnu.org/software/bash/).
 
 There are no further dependencies required to use pingen. To view the built-in manual page, you need to have man installed, but this is optional.
+# Bugs
+Currently, the only known bug is that PINs that begin with one or more zeros but end with a number other than zero are not included in generated lists. This is due to the underlying mathematical computation used by pingen. To report another bug, error, or typo, please submit an issue in this repository.
 # Disclaimer
 Do not use pingen for any illegal purposes, including, but not limited to, hacking into others' accounts, devices, or networks without permission. Cracking others' PINs to gain access to their account, device, or network is illegal, and pingen may not be used to break the law. Penetration testing requires explicit approval from the owner of the system you are testing on, and pingen should only be used for penetration testing with that permission. The developer of pingen does not assume any responsibility for illegal actions performed with the aid of, or invlolving, pingen.
