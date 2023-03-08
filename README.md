@@ -10,6 +10,7 @@ pingen is a command-line tool, written with bash scripting, for generating a lis
 # Installation
 To install pingen, you can clone this git repository onto your device:
 > git clone https://github.com/UniqueUsernam/pingen.git
+If you have man installed, a manpage file is included in the repository (pingen.1). If you want easy access to it, add it to your MANPATH or move it to directory man searches by default, such as /usr/local/share/man/man1.
 ## Dependencies
 + The bash shell, installed at the path /bin/bash (https://www.gnu.org/software/bash/).
 
